@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='emacsclient -c'
+export VISUAL=${EDITOR}
 export PAGER='less'
 
 #
@@ -32,6 +32,8 @@ fi
 #
 # Paths
 #
+export GO_DIR='/usr/local/Cellar/go/1.6.3'
+export GOPATH="$GO_DIR"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
@@ -43,9 +45,14 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+  $HOME/.npm-global/bin
   /usr/local/{bin,sbin}
   $path
+  $GO_DIR/bin
+  /usr/local/opt/go/libexec/bin
 )
+
+#export MANPATH=$HOME/.ports/share/man:$MANPATH
 
 #
 # Less
@@ -72,3 +79,7 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+export HOMEBREW_GITHUB_API_TOKEN=a7220e5b11096c7c8b4825d2b75a8ae44e037170
+
+export PATH="$HOME/.cargo/bin:$PATH"
